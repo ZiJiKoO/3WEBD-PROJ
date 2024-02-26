@@ -20,23 +20,30 @@ function Header() {
 
   return (
     <header className="header-container">
-      <h1>Book Search</h1>
-      <nav>
-        <ul>
-          <li><Link to="/">Homepage</Link></li>
-          <li><Link to="/search">Book</Link></li>
-          <li><Link to="/author">Author</Link></li>
-        </ul>
-      </nav>
-      <form onSubmit={handleSearchSubmit} className="search-form">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          placeholder="Search for books..."
-        />
-        <button type="submit">Search</button>
-      </form>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-3 col-md-6 col-sm-12">
+            <h1>Book Search</h1>
+          </div>
+          <div className="col-lg-9 col-md-6 col-sm-12">
+            <nav>
+              <ul>
+                <li><Link to="/">Homepage</Link></li>
+                <li><Link to="/author">Author</Link></li>
+              </ul>
+            </nav>
+            <form onSubmit={handleSearchSubmit} className="search-form">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder="Search for books..."
+              />
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

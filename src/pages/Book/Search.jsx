@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import '../../assets/css/Search.css';
+import NotFoundImage from '../../services/img/404-img.jpg'
 
 const Search = () => {
     document.title = "Book Search"; // Mettre à jour le titre de la page
@@ -15,14 +16,15 @@ const Search = () => {
     const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
     const [resultsPerPage] = useState(10); // Nombre de résultats par page
     const [displayedResults, setDisplayedResults] = useState([]); // Résultats affichés actuellement
+    const [sortOption, setSortOption] = useState('editions'); // Option de tri par défaut
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true); // Début du chargement
 
             try {
-                // Effectuer une requête à l'API Open Library avec le terme de recherche 'q'
-                const response = await fetch(`https://openlibrary.org/search.json?q=${searchQuery}`);
+                // Effectuer une requête à l'API Open Library avec le terme de recherche 'q' et l'option de tri sélectionnée
+                const response = await fetch(`https://openlibrary.org/search.json?q=${searchQuery}&sort=${sortOption}`);
                 const data = await response.json();
                 setSearchResults(data.docs); // Mettre à jour les résultats de recherche avec les données reçues
 
@@ -42,7 +44,7 @@ const Search = () => {
         if (searchQuery) {
             fetchData(); // Effectuer la recherche si le terme de recherche est présent
         }
-    }, [searchQuery]); // Exécuter l'effet lorsque le terme de recherche change
+    }, [searchQuery, sortOption]); // Exécuter l'effet lorsque le terme de recherche ou l'option de tri changent
 
     useEffect(() => {
         // Calculer l'indice de début et de fin pour les résultats à afficher en fonction de la page actuelle
@@ -58,11 +60,71 @@ const Search = () => {
         setCurrentPage(pageNumber); // Mettre à jour la page actuelle lors du changement de page
     };
 
+    const handleSortChange = (option) => {
+        setSortOption(option); // Mettre à jour l'option de tri lorsqu'elle change
+    };
+
     return (
         <div className="search-container">
             <h1>Search Results for "{searchQuery}"</h1>
+            {/* Cases à cocher pour choisir les options de tri */}
+            <div className="sort-options">
+                <label>
+                    <input
+                        type="radio"
+                        name="sortOption"
+                        value="editions"
+                        checked={sortOption === 'editions'}
+                        onChange={() => handleSortChange('editions')}
+                    />
+                    Editions
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="sortOption"
+                        value="old"
+                        checked={sortOption === 'old'}
+                        onChange={() => handleSortChange('old')}
+                    />
+                    Old
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="sortOption"
+                        value="new"
+                        checked={sortOption === 'new'}
+                        onChange={() => handleSortChange('new')}
+                    />
+                    New
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="sortOption"
+                        value="rating"
+                        checked={sortOption === 'rating'}
+                        onChange={() => handleSortChange('rating')}
+                    />
+                    Rating
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="sortOption"
+                        value="readinglog"
+                        checked={sortOption === 'readinglog'}
+                        onChange={() => handleSortChange('readinglog')}
+                    />
+                    Reading Log
+                </label>
+                {/* Ajoutez les autres options de tri ici */}
+            </div>
             {loading ? (
-                <div className="loading-message">Loading...</div>
+                <>
+                <center><span class="loader"></span></center>
+                </>
             ) : (
                 <>
                     {noResults ? (
@@ -72,10 +134,14 @@ const Search = () => {
                             <ul>
                                 {displayedResults.map((book, index) => (
                                     <li key={index}>
-                                        <div>Title: {book.title}</div>
-                                        <div>Author: {book.author_name}</div>
-                                        <div>First Published: {book.first_publish_year}</div>
-                                        {/* Ajoutez d'autres informations que vous souhaitez afficher */}
+                                        <Link to={`/book/${book.key.split("/").pop()}`}>
+                                        <img src={book.cover_i ? `http://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : NotFoundImage} alt={book.title} />
+                                            <div>
+                                                <div className="title">Title: {book.title}</div>
+                                                <div className="author">Author: {book.author_name}</div>
+                                                <div className="published">First Published: {book.first_publish_year}</div>
+                                            </div>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>

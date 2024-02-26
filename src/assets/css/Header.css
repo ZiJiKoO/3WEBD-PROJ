@@ -3,14 +3,12 @@
   background-color: #333;
   color: #fff;
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 /* Styles pour le titre */
 .header-container h1 {
   margin: 0;
+  font-size: 24px;
 }
 
 /* Styles pour la barre de navigation */
@@ -22,12 +20,17 @@ nav ul {
 
 nav ul li {
   display: inline;
+  margin-right: 20px; /* Ajout d'une marge entre les éléments de la barre de navigation */
+}
+
+nav ul li:last-child {
+  margin-right: 0; /* Supprimer la marge à droite du dernier élément */
 }
 
 nav ul li a {
   color: #fff;
   text-decoration: none;
-  padding: 10px;
+  font-size: 18px; /* Taille de la police pour les liens de navigation */
 }
 
 nav ul li a:hover {
@@ -37,22 +40,24 @@ nav ul li a:hover {
 /* Styles pour le formulaire de recherche */
 .search-form {
   display: flex;
-  gap: 10px;
+  align-items: center; /* Aligner verticalement les éléments du formulaire */
 }
 
 .search-form input[type="text"] {
-  padding: 8px;
+  padding: 10px;
   border: none;
   border-radius: 4px;
+  font-size: 16px; /* Taille de la police pour le champ de recherche */
 }
 
 .search-form button {
-  padding: 8px 16px;
+  padding: 10px 20px;
   background-color: #008CBA;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px; /* Taille de la police pour le bouton de recherche */
 }
 
 .search-form button:hover {

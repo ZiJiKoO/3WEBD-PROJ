@@ -58,23 +58,24 @@ const Search = () => {
 
     // Rendu du composant
     return (
-        <div>
-            <h1>Author Search</h1>
-            <form onSubmit={(e) => e.preventDefault()}>
+        <div className="container">
+            <h1 className="text-center">Author Search</h1>
+            <form className="text-center" onSubmit={(e) => e.preventDefault()}>
                 <input
                     type="text"
                     value={searchQuery}
                     onChange={handleSearchChange}
+                    className="form-control"
                     placeholder="Search by author..."
                 />
             </form>
-            <h2>Search Results for "{searchQuery}"</h2>
+            <h2 className="text-center">Search Results for "{searchQuery}"</h2>
             {loading ? (
-                <div>Loading...</div> // Afficher un message de chargement pendant le chargement
+                <div className="text-center">Loading...</div> // Afficher un message de chargement pendant le chargement
             ) : (
                 <>
                     {noResults ? (
-                        <div>No results found.</div> // Afficher "Aucun résultat trouvé" s'il n'y a pas de résultats
+                        <div className="text-center">No results found.</div> // Afficher "Aucun résultat trouvé" s'il n'y a pas de résultats
                     ) : (
                         <ul>
                             {searchResults.map((author, index) => (
@@ -92,4 +93,3 @@ const Search = () => {
 };
 
 export default Search;
-
