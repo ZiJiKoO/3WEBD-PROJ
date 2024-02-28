@@ -1,10 +1,11 @@
 import "./App.css";
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
+import "./assets/css/index.css"
 
 import HomePage from "./pages/Homepage";
 import Root from "./pages/Root";
 import Search from "./pages/Book/Search.jsx";
-import SearchAuthor from "./pages/Author/Search.jsx";
+import AdvancedSearch from "./pages/Advanced-Search.jsx";
 import BookDetail from "./pages/Book/Detail.jsx";
 
 const router = createBrowserRouter(
@@ -13,7 +14,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomePage />} />
       <Route path="Search" element={<Search/>}/>
       <Route path="book/:id" element={<BookDetail/>}/>
-      <Route path="Author" element={<SearchAuthor />} />
+      <Route path="AdvancedSearch" element={<AdvancedSearch />} />
     </Route>
   )
 );

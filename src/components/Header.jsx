@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../assets/css/Header.css';
+import { FaSearch } from "react-icons/fa";
+import { FaHouseUser } from "react-icons/fa";
+import { GrSearchAdvanced } from "react-icons/gr";
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -19,29 +22,30 @@ function Header() {
   };
 
   return (
-    <header className="header-container">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-3 col-md-6 col-sm-12">
-            <h1>Book Search</h1>
-          </div>
-          <div className="col-lg-9 col-md-6 col-sm-12">
-            <nav>
-              <ul>
-                <li><Link to="/">Homepage</Link></li>
-                <li><Link to="/author">Author</Link></li>
-              </ul>
-            </nav>
-            <form onSubmit={handleSearchSubmit} className="search-form">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                placeholder="Search for books..."
-              />
-              <button type="submit">Search</button>
-            </form>
-          </div>
+    <header className="Header-container">
+      <div className="Header-row">
+        <div className="Header-Title">
+          <h1>BibliOnline</h1>
+        </div>
+        <div className="Header-Nav">
+          <nav>
+            <ul>
+              <li className="Header-li"><Link to="/"><FaHouseUser size="0.9em"/> Homepage</Link></li>
+              <li className="Header-li"><Link to="/AdvancedSearch"><GrSearchAdvanced size="0.9em"/> Advanced Search</Link></li>
+            </ul>
+          </nav>
+        </div>
+        <div className="Header-Search">
+          <form onSubmit={handleSearchSubmit} className="search-form">
+          <a type="search-bouton"><FaSearch size="1.2em"/></a>
+            <input
+              className="searchbar"
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search for books..."
+            />
+          </form>
         </div>
       </div>
     </header>

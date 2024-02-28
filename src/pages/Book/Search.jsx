@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import '../../assets/css/Search.css';
-import NotFoundImage from '../../services/img/404-img.jpg'
+import NotFoundImage from '../../services/img/404-img.jpg';
 
 const Search = () => {
     document.title = "Book Search"; // Mettre à jour le titre de la page
@@ -17,6 +17,7 @@ const Search = () => {
     const [resultsPerPage] = useState(10); // Nombre de résultats par page
     const [displayedResults, setDisplayedResults] = useState([]); // Résultats affichés actuellement
     const [sortOption, setSortOption] = useState('editions'); // Option de tri par défaut
+    const [numFound, setNumFound] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,6 +33,7 @@ const Search = () => {
                     setNoResults(true); // Définir aucun résultat trouvé si aucun résultat n'est retourné
                 } else {
                     setNoResults(false);
+                    setNumFound(data.numFound);
                 }
             } catch (error) {
                 console.error('Error fetching search results:', error);
@@ -66,7 +68,7 @@ const Search = () => {
 
     return (
         <div className="search-container">
-            <h1>Search Results for "{searchQuery}"</h1>
+            <h1>Search Results for "{searchQuery}". {numFound} result(s) found</h1>
             {/* Cases à cocher pour choisir les options de tri */}
             <div className="sort-options">
                 <label>
@@ -123,7 +125,7 @@ const Search = () => {
             </div>
             {loading ? (
                 <>
-                <center><span class="loader"></span></center>
+                    <div className="loading-message">Loading...</div>
                 </>
             ) : (
                 <>
@@ -139,7 +141,8 @@ const Search = () => {
                                             <div>
                                                 <div className="title">Title: {book.title}</div>
                                                 <div className="author">Author: {book.author_name}</div>
-                                                <div className="published">First Published: {book.first_publish_year}</div>
+                                                <div className="published">First Published: {book.first_publish_year}</div>                             
+                                                <div className="rating">Rating: {book.ratings_sortable ? book.ratings_sortable+"/5" : "No rating"}</div>
                                             </div>
                                         </Link>
                                     </li>
