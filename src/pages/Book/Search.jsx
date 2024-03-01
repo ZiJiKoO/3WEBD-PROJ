@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import '../../assets/css/Search.css';
 import NotFoundImage from '../../services/img/404-img.jpg';
-
+import '../../assets/css/loading.css';
+import BookList from '../../components/BookList';
 const Search = () => {
     document.title = "Book Search"; // Mettre à jour le titre de la page
 
@@ -14,8 +15,7 @@ const Search = () => {
     const [loading, setLoading] = useState(false); // État pour le chargement
     const [noResults, setNoResults] = useState(false); // État pour indiquer l'absence de résultats
     const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-    const [resultsPerPage] = useState(10); // Nombre de résultats par page
-    const [displayedResults, setDisplayedResults] = useState([]); // Résultats affichés actuellement
+    const resultsPerPage = 30; // Nombre de résultats par page
     const [sortOption, setSortOption] = useState('editions'); // Option de tri par défaut
     const [numFound, setNumFound] = useState(0);
 
@@ -49,14 +49,9 @@ const Search = () => {
     }, [searchQuery, sortOption]); // Exécuter l'effet lorsque le terme de recherche ou l'option de tri changent
 
     useEffect(() => {
-        // Calculer l'indice de début et de fin pour les résultats à afficher en fonction de la page actuelle
-        const startIndex = (currentPage - 1) * resultsPerPage;
-        const endIndex = startIndex + resultsPerPage;
-        // Extraire les résultats à afficher à partir des résultats complets en fonction de l'indice de début et de fin
-        const displayedResults = searchResults.slice(startIndex, endIndex);
-        setDisplayedResults(displayedResults); // Mettre à jour les résultats affichés
-        window.scrollTo(0, 0); // Faire défiler l'utilisateur en haut de la page
-    }, [currentPage, searchResults, resultsPerPage]); // Exécuter l'effet lorsque la page actuelle ou les résultats complets changent
+        // Faire défiler l'utilisateur en haut de la page lorsque la page change
+        window.scrollTo(0, 0);
+    }, [currentPage]);
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber); // Mettre à jour la page actuelle lors du changement de page
@@ -66,11 +61,17 @@ const Search = () => {
         setSortOption(option); // Mettre à jour l'option de tri lorsqu'elle change
     };
 
+    const totalResults = searchResults.length;
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+
+    // Déterminer les résultats à afficher pour la page actuelle
+    const startIndex = (currentPage - 1) * resultsPerPage;
+    const endIndex = Math.min(startIndex + resultsPerPage, totalResults);
+    const displayedResults = searchResults.slice(startIndex, endIndex);
+
     return (
         <div className="search-container">
-            <h1>Search Results for "{searchQuery}". {numFound} result(s) found</h1>
-            {/* Cases à cocher pour choisir les options de tri */}
-            <div className="sort-options">
+            <div className="sort-options"><center>
                 <label>
                     <input
                         type="radio"
@@ -120,46 +121,9 @@ const Search = () => {
                         onChange={() => handleSortChange('readinglog')}
                     />
                     Reading Log
-                </label>
-                {/* Ajoutez les autres options de tri ici */}
+                </label></center>
             </div>
-            {loading ? (
-                <>
-                    <div className="loading-message">Loading...</div>
-                </>
-            ) : (
-                <>
-                    {noResults ? (
-                        <div className="no-results-message">No results found.</div>
-                    ) : (
-                        <>
-                            <ul>
-                                {displayedResults.map((book, index) => (
-                                    <li key={index}>
-                                        <Link to={`/book/${book.key.split("/").pop()}`}>
-                                        <img src={book.cover_i ? `http://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : NotFoundImage} alt={book.title} />
-                                            <div>
-                                                <div className="title">Title: {book.title}</div>
-                                                <div className="author">Author: {book.author_name}</div>
-                                                <div className="published">First Published: {book.first_publish_year}</div>                             
-                                                <div className="rating">Rating: {book.ratings_sortable ? book.ratings_sortable+"/5" : "No rating"}</div>
-                                            </div>
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                            {/* Pagination */}
-                            <div className="pagination">
-                                {[...Array(Math.ceil(searchResults.length / resultsPerPage)).keys()].map((pageNumber) => (
-                                    <button key={pageNumber + 1} onClick={() => handlePageChange(pageNumber + 1)}>
-                                        {pageNumber + 1}
-                                    </button>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                </>
-            )}
+            <BookList loading={loading} noResults={noResults} searchQuery={searchQuery} numFound={numFound} displayedResults={displayedResults} handlePageChange={handlePageChange} currentPage={currentPage} totalPages={totalPages} />
         </div>
     );
 };

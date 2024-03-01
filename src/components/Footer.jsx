@@ -12,6 +12,7 @@ const Footer = () => {
           </div>
           <a href="https://twitter.com/votreProfilTwitter" target="_blank" rel="noopener noreferrer" className="Twitter"><RiTwitterXLine size="2em" /></a>
           <a href="https://www.facebook.com/votrePageFacebook" target="_blank" rel="noopener noreferrer" className="Facebook"><CiFacebook size="2.4em" /></a>
+          <a href="https://www.facebook.com/votrePageFacebook" target="_blank" rel="noopener noreferrer" className="Facebook"><CiFacebook size="2.4em" /></a>
         </div>
     </footer>
   );

@@ -67,7 +67,7 @@ function SearchResultPage() {
   
   return (
     <div>
-      <img src={book.covers ? `http://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg` : NotFoundImage} alt="Book Cover" />
+      <img src={book.covers ? `http://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg` : NotFoundImage} alt="Book Cover" />
       <h2>{book.title}</h2>
       <p><strong>Auteur(s):</strong> <a href={`https://en.wikipedia.org/wiki/${author.name}`}>{author.name ? author.name : "N/A"}</a></p>
       <p><strong>Informations supplémentaires:</strong> {wikiError ? "Aucun résumé Wikipedia disponible, veuillez nous excuser." : plainTextExtract}</p>
