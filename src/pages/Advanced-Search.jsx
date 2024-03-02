@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import BookList from '../components/BookList';
 import '../assets/css/AdvancedSearch.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, ListGroup } from 'react-bootstrap';
 
 function AdvancedSearch() {
     const [searchResults, setSearchResults] = useState([]); // État pour stocker les résultats de recherche
