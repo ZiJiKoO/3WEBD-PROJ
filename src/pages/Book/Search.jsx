@@ -71,7 +71,7 @@ const Search = () => {
 
     return (
         <div className="search-container">
-            <div className="sort-options"><center>
+            <div className="sort-options">
                 <label>
                     <input
                         type="radio"
@@ -121,7 +121,7 @@ const Search = () => {
                         onChange={() => handleSortChange('readinglog')}
                     />
                     Reading Log
-                </label></center>
+                </label>
             </div>
             <BookList loading={loading} noResults={noResults} searchQuery={searchQuery} numFound={numFound} displayedResults={displayedResults} handlePageChange={handlePageChange} currentPage={currentPage} totalPages={totalPages} />
         </div>

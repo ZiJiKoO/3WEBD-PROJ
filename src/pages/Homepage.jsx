@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import '../assets/css/Homepage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, ListGroup, Carousel } from 'react-bootstrap';
 import Cherub from '../services/img/Cherub.jpg';
 import LappelDeLaForêt from '../services/img/lappel-de-la-foret.jpg';
 import UnHivernageDansLesGlaces from '../services/img/Un-hivernage-dans-les-glaces.jpg';
-import { alignPropType } from 'react-bootstrap/esm/types';
 
 const HomePage = () => {
   const [recentChanges, setRecentChanges] = useState([]);
