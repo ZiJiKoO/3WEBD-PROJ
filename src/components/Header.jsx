@@ -60,7 +60,7 @@ function Header() {
               )}
               <li className="Header-li">
                 <Link to="/AdvancedSearch">
-                  <GrSearchAdvanced size="0.9em"/> {isMobile ? "RA" : "Advanced Search"}
+                  {!isMobile ? <GrSearchAdvanced size="0.9em"/> : <GrSearchAdvanced size="1.2em"/>}  {!isMobile ? "Advanced Search" : "AS"}
                 </Link>
               </li>
             </ul>
@@ -68,9 +68,7 @@ function Header() {
         </div>
         <div className="Header-Search">
           <form onSubmit={handleSearchSubmit} className="search-form">
-            {!isMobile && (
               <a type="search-bouton"><FaSearch size="1.2em"/></a>
-            )}
             {!isMobile ? (
             <input
               className="searchbar"
@@ -80,6 +78,7 @@ function Header() {
               placeholder="Search for books..."/>
               ) : (
                 <input
+                className='searchbar-mobile'
                 type="text"
                 value={searchQuery}
                 onChange={handleSearchChange}

@@ -7,6 +7,7 @@ import Root from "./pages/Root";
 import Search from "./pages/Book/Search.jsx";
 import AdvancedSearch from "./pages/Advanced-Search.jsx";
 import BookDetail from "./pages/Book/Detail.jsx";
+import NotFound from "./pages/404.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
       <Route path="Search" element={<Search/>}/>
       <Route path="book/:id" element={<BookDetail/>}/>
       <Route path="AdvancedSearch" element={<AdvancedSearch />} />
+      <Route path="*" element={<NotFound/>} />
     </Route>
   )
 );

@@ -80,7 +80,7 @@ const Search = () => {
                         checked={sortOption === 'editions'}
                         onChange={() => handleSortChange('editions')}
                     />
-                    Editions
+                    EDITIONS
                 </label>
                 <label>
                     <input
@@ -90,7 +90,7 @@ const Search = () => {
                         checked={sortOption === 'old'}
                         onChange={() => handleSortChange('old')}
                     />
-                    Old
+                    OLD
                 </label>
                 <label>
                     <input
@@ -100,7 +100,7 @@ const Search = () => {
                         checked={sortOption === 'new'}
                         onChange={() => handleSortChange('new')}
                     />
-                    New
+                    NEW
                 </label>
                 <label>
                     <input
@@ -110,7 +110,7 @@ const Search = () => {
                         checked={sortOption === 'rating'}
                         onChange={() => handleSortChange('rating')}
                     />
-                    Rating
+                    RATING
                 </label>
                 <label>
                     <input
@@ -120,7 +120,7 @@ const Search = () => {
                         checked={sortOption === 'readinglog'}
                         onChange={() => handleSortChange('readinglog')}
                     />
-                    Reading Log
+                    READING LOG
                 </label>
             </div>
             <BookList loading={loading} noResults={noResults} searchQuery={searchQuery} numFound={numFound} displayedResults={displayedResults} handlePageChange={handlePageChange} currentPage={currentPage} totalPages={totalPages} />

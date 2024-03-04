@@ -4,6 +4,7 @@ import { Container, ListGroup, Carousel } from 'react-bootstrap';
 import Cherub from '../services/img/Cherub.jpg';
 import LappelDeLaForêt from '../services/img/lappel-de-la-foret.jpg';
 import UnHivernageDansLesGlaces from '../services/img/Un-hivernage-dans-les-glaces.jpg';
+import '../assets/css/Homepage.css';
 
 const HomePage = () => {
   const [recentChanges, setRecentChanges] = useState([]);
@@ -30,20 +31,20 @@ const HomePage = () => {
   ];
 
   return (
-    <Container>
+    <Container className='root-div'>
       <h1 className="my-4 text-center">Welcome to Our Website</h1>
       <br />
       <Carousel>
-  {images.map(image => (
-    <Carousel.Item key={image.key}>
-      <img
-        className="d-block mx-auto"
-        style={{ width: '400px', height: '600px' }}
-        src={image.url}
-      />
-    </Carousel.Item>
-  ))}
-</Carousel>
+        {images.map(image => (
+          <Carousel.Item key={image.key}>
+            <img
+              className="d-block mx-auto"
+              style={{ width: '400px', height: '600px' }}
+              src={image.url}
+            />
+          </Carousel.Item>
+        ))}
+      </Carousel>
       <br />
       <br />
       <br />
@@ -58,10 +59,9 @@ const HomePage = () => {
           </ListGroup.Item>
         ))}
       </ListGroup>
+      <br />
     </Container>
-    
   );
 };
-
 
 export default HomePage;

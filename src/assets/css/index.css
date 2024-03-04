@@ -12,3 +12,7 @@ a {
 * {
       font-family: "Segoe UI Light","Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
 }
+
+body {
+    background-image: url(../../services/img/Bibli.jpg);;
+  }

@@ -14,8 +14,8 @@ function BookList({ loading, noResults, searchQuery, numFound, displayedResults,
                         <div className="no-results-message"><center>No results found.</center></div>
                     ) : (
                         <>
-                            <h1><center>{numFound} result(s) found</center></h1>
-                            <ul className='Result-Book'>
+                            <h1 className='result-number'><center>{numFound} result(s) found</center></h1>
+                            <ul className='Result-Book' aria-label="BookList"> 
                                 {displayedResults.map((book, index) => (
                                     <li className='Result-Book-Unity' key={index}>
                                         <Link to={`/book/${book.key.split("/").pop()}`}>
@@ -33,8 +33,8 @@ function BookList({ loading, noResults, searchQuery, numFound, displayedResults,
                             {/* Pagination */}
                             <div className="pagination"><center>
                                 <button onClick={() => handlePageChange(1)}>First Page</button>
-                                <button onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}>Previous Page</button>
-                                <span> Page {currentPage} of {totalPages} </span>
+                                <button onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}>Prev Page</button>
+                                <span className='pagination-list'> Page {currentPage} of {totalPages} </span>
                                 <button onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}>Next Page</button>
                                 <button onClick={() => handlePageChange(totalPages)}>Last Page</button></center>
                             </div>
