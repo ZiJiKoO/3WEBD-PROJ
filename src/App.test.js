@@ -1,6 +1,7 @@
 import { render, screen, act, fireEvent, within, waitFor } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import App from './App';
+import Notfound from './pages/404';
 import BookList from './components/BookList';
 jest.setTimeout(60000);
 
@@ -132,4 +133,12 @@ test("render book detail", async () => {
       const wikilink = screen.getByRole('link', { name: /voir sur wikipedia/i })
       expect(wikilink).toBeInTheDocument();
     }, { timeout: 10000 });
+});
+
+/*test page 404 not foun*/
+test("render 404 page", async () => {
+  render(<Notfound />);
+  expect(
+    await screen.findByRole("heading", { level: 1, name: "404 - Page Not Found" })
+  ).toBeInTheDocument();
 });
