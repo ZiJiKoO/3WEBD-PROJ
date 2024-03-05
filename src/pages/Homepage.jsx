@@ -4,6 +4,9 @@ import { Container, ListGroup, Carousel } from 'react-bootstrap';
 import Cherub from '../services/img/Cherub.jpg';
 import LappelDeLaForêt from '../services/img/lappel-de-la-foret.jpg';
 import UnHivernageDansLesGlaces from '../services/img/Un-hivernage-dans-les-glaces.jpg';
+import Naruto from '../services/img/Naruto.jpg';
+import veggie from '../services/img/veggie.jpg';
+import Legeneraldourakine from '../services/img/le-general-dourakine.jpg';
 import '../assets/css/Homepage.css';
 
 const HomePage = () => {
@@ -27,7 +30,10 @@ const HomePage = () => {
   const images = [
     { url: Cherub, key: 1 },
     { url: LappelDeLaForêt, key: 2 },
-    { url: UnHivernageDansLesGlaces, key: 3 }
+    { url: UnHivernageDansLesGlaces, key: 3 },
+    { url: Naruto, key: 4 },
+    { url: veggie, key: 5 },
+    { url: Legeneraldourakine, key: 6}
   ];
 
   return (
