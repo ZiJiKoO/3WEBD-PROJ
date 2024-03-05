@@ -78,7 +78,7 @@ function AdvancedSearch() {
     const displayedResults = searchResults.slice(startIndex, endIndex);
     return (
         <div className='search-container'><center>
-            <h1>Advanced Search</h1>
+            <h1 className='Advanced-Search'>Advanced Search</h1>
             <div className='form-group'>
             <div className='form-input'>
                 <label htmlFor="searchTerm">Search Term</label>

@@ -12,9 +12,9 @@ const HomePage = () => {
   useEffect(() => {
     const fetchRecentChanges = async () => {
       try {
-        const response = await fetch('http://openlibrary.org/recentchanges.json');
+        const response = await fetch('https://openlibrary.org/recentchanges.json');
         const data = await response.json();
-        setRecentChanges(data.slice(0, 10)); // Extract the first 10 results
+        setRecentChanges(data.slice(0, 10));
       } catch (error) {
         console.error('Error fetching recent changes:', error);
       }

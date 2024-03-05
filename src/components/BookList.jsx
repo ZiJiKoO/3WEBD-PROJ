@@ -31,13 +31,16 @@ function BookList({ loading, noResults, searchQuery, numFound, displayedResults,
                                 ))}
                             </ul>
                             {/* Pagination */}
-                            <div className="pagination"><center>
-                                <button onClick={() => handlePageChange(1)}>First Page</button>
-                                <button onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}>Prev Page</button>
-                                <span className='pagination-list'> Page {currentPage} of {totalPages} </span>
-                                <button onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}>Next Page</button>
-                                <button onClick={() => handlePageChange(totalPages)}>Last Page</button></center>
-                            </div>
+                            {numFound ? (
+                                <div className="pagination">
+                                    <center>
+                                        <button onClick={() => handlePageChange(1)}>First Page</button>
+                                        <button onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}>Prev Page</button>
+                                        <span className='pagination-list'> Page {currentPage} of {totalPages} </span>
+                                        <button onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}>Next Page</button>
+                                        <button onClick={() => handlePageChange(totalPages)}>Last Page</button>
+                                    </center>
+                                </div>): void 0}
                         </>
                     )}
                 </>

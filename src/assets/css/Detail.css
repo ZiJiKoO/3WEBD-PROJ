@@ -1,0 +1,21 @@
+.root-container {
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1em;
+}
+
+@media screen and (max-width: 600px) {
+    .root-container {
+        flex-direction: column;
+    }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NotFoundImage from '../../services/img/404-img.jpg'
+import "../../assets/css/Detail.css";
 
 function SearchResultPage() {
   document.title = 'Search Results';
@@ -66,12 +67,16 @@ function SearchResultPage() {
   const plainTextExtract = extract ? extract.replace(/<\/?[^>]+(>|$)/g, "") : '';
   
   return (
-    <div>
-      <img src={book.covers ? `http://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg` : NotFoundImage} alt="Book Cover" />
+    <div className='root-container'>
+      <div className='image'>
+      <img className="img-cover" src={book.covers ? `http://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg` : NotFoundImage} alt="Book Cover" />
+      </div>
+      <div className='info-container'>
       <h2>{book.title}</h2>
       <p><strong>Auteur(s):</strong> <a href={`https://en.wikipedia.org/wiki/${author.name}`}>{author.name ? author.name : "N/A"}</a></p>
       <p><strong>Informations supplémentaires:</strong> {wikiError ? "Aucun résumé Wikipedia disponible, veuillez nous excuser." : plainTextExtract}</p>
       <p><a href={`https://en.wikipedia.org/wiki/${book.title.replace(/ /g, '_')}`} target="_blank" rel="noreferrer">Voir sur Wikipedia</a></p>
+      </div>
     </div>
   );
 };

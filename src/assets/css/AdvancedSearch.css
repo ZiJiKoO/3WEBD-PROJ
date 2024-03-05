@@ -19,6 +19,37 @@
 .form-group{
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: center;
+    margin: 0.5em;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+h1.Advanced-Search {
+    margin: 0.5em;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+@media screen and (max-width: 576px) {
+    .form-group {
+        flex-direction: column;
+    }
+    span.pagination-list {
+        font-size: 0.6em;
+    }
+    .pagination button {
+        font-size: 0.6em;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .form-group {
+        flex-direction: column;
+    }
 }
