@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     background-color: aliceblue;
+    min-height:  35rem;
 }
 
 .info-container {
@@ -18,4 +19,8 @@
     .root-container {
         flex-direction: column;
     }
+}
+
+.chargement {
+    min-height: 35rem;
 }

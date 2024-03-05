@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import '../../assets/css/Search.css';
-import NotFoundImage from '../../services/img/404-img.jpg';
 import '../../assets/css/loading.css';
 import BookList from '../../components/BookList';
 const Search = () => {
